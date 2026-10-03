@@ -13,7 +13,8 @@ Options -Indexes
     RewriteEngine On
 
     # Carpeta pública de esta aplicación, relativa al DocumentRoot de XAMPP.
-    RewriteBase /MVC-mustache/entradasmessi_fin_clase_lunes/
+    # si el proyecto no esta en la raiz de htdocs, cambiar a /nombre-carpeta/
+    RewriteBase /
 
     # Si la URL no corresponde a un archivo existente, prueba la ruta controlador/método.
     RewriteCond %{REQUEST_FILENAME} !-f
