@@ -12,7 +12,7 @@ class ReservaController{
 
     public function sucess() {
         if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php");
+            header("Location: /php-mvc/");
             exit;
         }
 
@@ -21,7 +21,7 @@ class ReservaController{
         $reserva = $this->model->getReserva($reserva_id);
 
         if ($reserva === null) {
-            header("Location: index.php");
+            header("Location: /php-mvc/");
             exit;
         }
 
@@ -30,7 +30,7 @@ class ReservaController{
 
     public function show() {
         if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php");
+            header("Location: /php-mvc/");
             exit;
         }
 
@@ -41,7 +41,7 @@ class ReservaController{
 
     public function mostrarUnLugar() {
         if (!isset($_SESSION['usuario'])) {
-        header("Location: index.php");
+        header("Location: /php-mvc/");
         exit;
         }
 
@@ -50,7 +50,7 @@ class ReservaController{
         $lugar = $this->model->getLugar($lugar_id);
 
         if ($lugar === null) {
-            header("Location: index.php?controller=lugares");
+            header("Location: /php-mvc/lugares");
             exit;
         }
 
@@ -73,7 +73,7 @@ class ReservaController{
 
             $reserva_id = $this->model->crearReserva($nombre,$apellido,$dni,$email,$telefono,$lugar_id);
 
-            header("Location: index.php?controller=reserva&method=sucess&id=$reserva_id");
+            header("Location: /php-mvc/reserva/sucess?id=$reserva_id");
             exit;
         }
     }

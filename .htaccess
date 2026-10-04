@@ -2,6 +2,7 @@
 Options -Indexes
 
 # Protege archivos sensibles: logs, configuraciones INI y este mismo .htaccess.
+
 <FilesMatch ".*\.(log|ini|htaccess)$">
     # Deniega el acceso HTTP a los archivos que coincidan (sintaxis compatible con Apache 2.2/2.4).
     deny from all
@@ -10,23 +11,33 @@ Options -Indexes
 # Solo procesa estas reglas si mod_rewrite está instalado y habilitado.
 <IfModule mod_rewrite.c>
     # Activa el motor de reescritura de URL.
+
     RewriteEngine On
 
     # Carpeta pública de esta aplicación, relativa al DocumentRoot de XAMPP.
     # si el proyecto no esta en la raiz de htdocs, cambiar a /nombre-carpeta/
-    RewriteBase /
+    RewriteBase /php-mvc/
 
     # Si la URL no corresponde a un archivo existente, prueba la ruta controlador/método.
+
     RewriteCond %{REQUEST_FILENAME} !-f
+
     # Si tampoco corresponde a un directorio existente, envía la ruta al front controller.
     RewriteCond %{REQUEST_FILENAME} !-d
 
     # Ejemplo: /evento/show -> index.php?controller=evento&method=show
+    
+    # -- REGLA 1: /controller/method ------
+    # ^([^/]+)/([^/]+)$ -> caputra dos segmentos separados por / 
+    # $1 = primer segmento (Controller)
+    # $2 = segundo segmento (method)
+    # [L] = Last: si esta regla coincide, no evaluar las siguientes. 
+    # [QSA] = Query String Append: conserva parametros adicionales.
+    
     RewriteRule ^([^/]+)/([^/]+)$ index.php?controller=$1&method=$2 [L,QSA]
 
-    # Para la regla siguiente, también deja pasar archivos y carpetas existentes sin reescribirlos.
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    # Si la ruta tiene solo un segmento, envía el controlador; el método queda sin especificar.
-    RewriteRule ^([^/]+)$ index.php?controller=$1 [L,QSA]
+    # -- REGLA 2: /controller (sin method) ----
+    #si solo viene el controller, el router usa el metodo default ('show').
+    RewriteRule ^([^/]+)$       index.php?controller=$1         [L,QSA]
+    
 </IfModule>

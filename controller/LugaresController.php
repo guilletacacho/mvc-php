@@ -12,7 +12,7 @@ class LugaresController{
 
     public function show() {
         if (!isset($_SESSION['usuario'])) {
-            header("Location: index.php");
+            header("Location: /php-mvc/");
             exit;
         }
 

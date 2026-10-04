@@ -15,19 +15,19 @@
         $usuario = $this->model->auntenticar($_POST['usuario'], $_POST['password']);
 
         if($usuario == null){
-            header("Location: index.php?error=1");
+            header("Location: /php-mvc/?error=1");
             exit;
         }
 
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario'] = $usuario['usuario'];
-        header("Location: index.php");
+        header("Location: /php-mvc/");
         exit;
     }
 
     public function logout(){
         session_destroy();
-        header("Location: index.php");
+        header("Location: /php-mvc/");
         exit;
     }
 }

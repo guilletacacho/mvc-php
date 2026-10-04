@@ -56,11 +56,11 @@
 <body>
 
 <div class="w3-bar" style="background-color:#2E7D32">
-    <a href="index.php" class="w3-bar-item w3-button">🏠 Inicio</a>
+    <a href="/php-mvc/" class="w3-bar-item w3-button">🏠 Inicio</a>
     <?php if (isset($_SESSION['usuario'])): ?>
-        <a href="index.php?controller=lugares" class="w3-bar-item w3-button">💺 Lugares</a>
-        <a href="index.php?controller=reserva&method=show" class="w3-bar-item w3-button">📋 Reservas</a>
-        <a href="index.php?controller=login&method=logout" class="w3-bar-item w3-button w3-right">🚪 Salir</a>
+        <a href="/php-mvc/lugares" class="w3-bar-item w3-button">💺 Lugares</a>
+        <a href="/php-mvc/reserva/show" class="w3-bar-item w3-button">📋 Reservas</a>
+        <a href="/php-mvc/login/logout" class="w3-bar-item w3-button w3-right">🚪 Salir</a>
     <?php endif; ?>
 </div>
 
