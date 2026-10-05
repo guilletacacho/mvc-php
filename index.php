@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("Configuration.php");
+require_once(__DIR__ . "/app/Configuration.php");
 
 $configuration = new Configuration();
 $router = $configuration->getRouter();

@@ -1,19 +1,24 @@
 <?php
 
-require_once("helper/MyDatabase.php");
-require_once("helper/MustacheRender.php");
-require_once("helper/Router.php");
-require_once("model/LugaresModel.php");
-require_once("controller/LugaresController.php");
+$projectPath = dirname(__DIR__);
 
-require_once("model/ReservaModel.php");
-require_once("controller/ReservaController.php");
+require_once($projectPath . "/vendor/mustache/Mustache/Autoloader.php");
+Mustache_Autoloader::register();
 
-require_once("model/EventoModel.php");
-require_once("controller/EventoController.php");
+require_once($projectPath . "/helper/MyDatabase.php");
+require_once($projectPath . "/helper/MustacheRender.php");
+require_once($projectPath . "/helper/Router.php");
+require_once(__DIR__ . "/model/LugaresModel.php");
+require_once(__DIR__ . "/controller/LugaresController.php");
 
-require_once("model/LoginModel.php");
-require_once("controller/LoginController.php");
+require_once(__DIR__ . "/model/ReservaModel.php");
+require_once(__DIR__ . "/controller/ReservaController.php");
+
+require_once(__DIR__ . "/model/EventoModel.php");
+require_once(__DIR__ . "/controller/EventoController.php");
+
+require_once(__DIR__ . "/model/LoginModel.php");
+require_once(__DIR__ . "/controller/LoginController.php");
 
 class Configuration{
 
@@ -68,7 +73,7 @@ class Configuration{
     
     private function getDatabase(){
 
-        $config = parse_ini_file("config/config.ini");
+        $config = parse_ini_file(dirname(__DIR__) . "/config/config.ini");
         return new MyDatabase($config["db_host"],
         $config["db_user"],
         $config["db_pass"],

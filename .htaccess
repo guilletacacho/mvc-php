@@ -20,6 +20,16 @@ Options -Indexes
 
     # Si la URL no corresponde a un archivo existente, prueba la ruta controlador/método.
 
+    # -- REGLA: 0 ----
+    #assets estaticos (css,js,imagenes) se sirven tal cual,
+    #nunca pasan por index.php ni por el router
+    
+    RewriteRule ^public/ - [L]
+
+    # Bloquea el acceso HTTP directo a todo lo que está dentro de app/.
+    # PHP puede seguir cargando estos archivos mediante require/include desde index.php.
+    RewriteRule ^app/ - [F,L]
+
     RewriteCond %{REQUEST_FILENAME} !-f
 
     # Si tampoco corresponde a un directorio existente, envía la ruta al front controller.
